@@ -4,75 +4,75 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.11.2-orange.svg)](RELEASE_NOTES.md)
 
-**Форк модуля Mapchooser Extended для управления голосованием по выбору карт на серверах Source Engine (CS:GO, CS:S, L4D/L4D2)**
+**Mapchooser Extended 分支版本，用于在 Source 引擎服务器（CS:GO、CS:S、L4D/L4D2）上管理地图选择投票**
 
-> 📌 Этот проект основан на [sourcemod-mapchooser-extended](https://github.com/Sneaks-Community/sourcemod-mapchooser-extended) от Sneaks Community
-
----
-
-## ✨ Особенности
-
-### Основной функционал
-- 🗳️ **Система голосования по выбору карт** - позволяет игрокам голосовать за следующую карту
-- 🎯 **Номинирование карт** - игроки могут номинировать каждую отдельную карту
-- 🔄 **Чередование карт** - автоматическое переключение в конце раунда
-- 🎬 **Рок-голосование** - возможность вернуться на текущую карту в начале раунда
-
-### Улучшения в версии 1.11.2
-- ✅ Обновлённый визуальный стиль сообщений в чате с префиксом `[MAP]`
-- ✅ Полная поддержка русского языка (исправлены ошибки переводов)
-- ✅ Добавлена библиотека `multicolors.inc` для работы с цветами
-- ✅ Динамическая загрузка префикса из файла переводов
-- ✅ Расширенная поддержка игр (включая Left4Dead 1 и 2)
-- ✅ Звуковые эффекты отключены по умолчанию (опционально)
-- 🔧 Улучшенная система определения типа игры
+> 📌 本项目基于 Sneaks Community 的 [sourcemod-mapchooser-extended](https://github.com/Sneaks-Community/sourcemod-mapchooser-extended)
 
 ---
 
-## 📋 Требования
+## ✨ 特性
 
-### Для игровых серверов
-- **SourceMod** версии 1.10 и выше
-- **Поддерживаемые игры:**
+### 核心功能
+- 🗳️ **地图选择投票系统** - 允许玩家为下一张地图投票
+- 🎯 **地图提名** - 玩家可以提名每一张单独的地图
+- 🔄 **地图轮换** - 在回合结束时自动切换
+- 🎬 **Rock the Vote** - 在回合开始时可以返回当前地图
+
+### 1.11.2 版本的改进
+- ✅ 更新了聊天消息的视觉样式，使用 `[MAP]` 前缀
+- ✅ 完整支持俄语（修复了翻译错误）
+- ✅ 添加了 `multicolors.inc` 颜色处理库
+- ✅ 从翻译文件动态加载前缀
+- ✅ 扩展了对更多游戏的支持（包括 Left4Dead 1 和 2）
+- ✅ 默认关闭音效（可选启用）
+- 🔧 改进了游戏类型检测系统
+
+---
+
+## 📋 系统要求
+
+### 游戏服务器
+- **SourceMod** 1.10 及以上版本
+- **支持的游戏：**
   - Counter-Strike: Global Offensive (CS:GO)
   - Counter-Strike: Source (CSS)
   - Left 4 Dead (L4D)
   - Left 4 Dead 2 (L4D2)
-  - Другие игры на Source Engine
+  - 其他基于 Source 引擎的游戏
 
-### Для компиляции из исходников
-- **SourceMod Compiler (spcomp)** версии 1.10+
-- Файлы include из SourceMod SDK
+### 从源码编译
+- **SourceMod 编译器 (spcomp)** 1.10+ 版本
+- SourceMod SDK 中的 include 文件
 
 ---
 
-## 🚀 Установка
+## 🚀 安装
 
-### Быстрая установка (готовые плагины)
+### 快速安装（使用已编译插件）
 
-1. **Загрузите файлы** из папки `Mapchooser Extended 1.11.2 CSGO+CSS/`
+1. **下载** `Mapchooser Extended 1.11.2 CSGO+CSS/` 文件夹中的文件
 
-2. **Скопируйте в директорию сервера:**
+2. **复制到服务器目录：**
    ```
    Mapchooser Extended 1.11.2 CSGO+CSS/
-   └── addons/sourcemod/    →  ваш_сервер/addons/sourcemod/
-   └── cfg/sourcemod/       →  ваш_сервер/cfg/sourcemod/
+   └── addons/sourcemod/    →  你的服务器/addons/sourcemod/
+   └── cfg/sourcemod/       →  你的服务器/cfg/sourcemod/
    ```
 
-3. **Перезагрузите сервер с помощью команды:**
+3. **使用以下命令重载服务器：**
    ```
    sm_plugins reload mapchooser_extended
    ```
 
-### Установка с компиляцией
+### 编译安装
 
-1. **Скопируйте файлы include:**
+1. **复制 include 文件：**
    ```
-   addons/sourcemod/scripting/include/multicolors.inc  → ваш_include_folder/
-   addons/sourcemod/scripting/include/multicolors/      → ваш_include_folder/
+   addons/sourcemod/scripting/include/multicolors.inc  → 你的_include文件夹/
+   addons/sourcemod/scripting/include/multicolors/      → 你的_include文件夹/
    ```
 
-2. **Скомпилируйте плагины:**
+2. **编译插件：**
    ```bash
    spcomp.exe mapchooser_extended.sp -o ../plugins/mapchooser_extended.smx
    spcomp.exe nominations_extended.sp -o ../plugins/nominations_extended.smx
@@ -80,152 +80,152 @@
    spcomp.exe basetriggers.sp -o ../plugins/basetriggers.smx
    ```
 
-3. **Для звуков (опционально):**
-   - Переместите `mapchooser_extended_sounds.smx` из папки `disabled` в папку `plugins`
+3. **音效（可选）：**
+   - 将 `mapchooser_extended_sounds.smx` 从 `disabled` 文件夹移动到 `plugins` 文件夹
 
-> 📖 Подробная инструкция: [INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md)
+> 📖 详细说明：[INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md)
 
 ---
 
-## 📁 Структура файлов
+## 📁 文件结构
 
 ```
 ├── addons/sourcemod/
 │   ├── configs/
-│   │   └── mapchooser_extended/     # Конфигурационные файлы
-│   │       ├── maps/                # Список карт по игре
-│   │       └── sounds/              # Звуковые файлы
+│   │   └── mapchooser_extended/     # 配置文件
+│   │       ├── maps/                # 按游戏分类的地图列表
+│   │       └── sounds/              # 声音文件
 │   ├── plugins/
-│   │   ├── mapchooser_extended.smx     # Основной плагин
-│   │   ├── nominations_extended.smx    # Плагин номинирования
-│   │   ├── rockthevote_extended.smx    # Плагин рок-голоса
-│   │   ├── basetriggers.smx            # Базовые триггеры
+│   │   ├── mapchooser_extended.smx     # 主插件
+│   │   ├── nominations_extended.smx    # 提名插件
+│   │   ├── rockthevote_extended.smx    # RTV 插件
+│   │   ├── basetriggers.smx            # 基础触发器
 │   │   └── disabled/
-│   │       └── mapchooser_extended_sounds.smx  # Звуки (изолированы)
+│   │       └── mapchooser_extended_sounds.smx  # 音效（已隔离）
 │   ├── scripting/
-│   │   ├── *.sp                     # Исходные файлы плагинов
-│   │   └── include/                 # Библиотеки (inc файлы)
+│   │   ├── *.sp                     # 插件源文件
+│   │   └── include/                 # 库文件（inc 文件）
 │   └── translations/
-│       └── *.phrases.txt            # Файлы переводов
+│       └── *.phrases.txt            # 翻译文件
 └── cfg/sourcemod/
-    └── mapchooser_extended.cfg      # Основная конфигурация
+    └── mapchooser_extended.cfg      # 主配置文件
 ```
 
 ---
 
-## ⚙️ Конфигурация
+## ⚙️ 配置
 
-### Основной файл конфигурации
-Отредактируйте `cfg/sourcemod/mapchooser_extended.cfg` для настройки:
+### 主配置文件
+编辑 `cfg/sourcemod/mapchooser_extended.cfg` 进行配置：
 
 ```cfg
-// Время голосования (в секундах)
+// 投票时长（秒）
 sm_mapvote_time "15"
 
-// Минимальное количество карт в списке голосования
+// 投票列表中最少的地图数量
 sm_mapvote_endround_time "20"
 
-// Показывать текущий рейтинг голосов
+// 显示当前得票排名
 sm_mapvote_showrank "1"
 
-// Процент голосов для автоматической смены карты
+// 自动更换地图所需的投票百分比
 sm_mapvote_playerveto "1"
 ```
 
-> 📖 Полная документация: [README_DOCUMENTATION.md](README_DOCUMENTATION.md)
+> 📖 完整文档：[README_DOCUMENTATION.md](README_DOCUMENTATION.md)
 
 ---
 
-## 📊 Что изменилось от оригинала
+## 📊 与原版的区别
 
-Детальное сравнение версий доступно в файлах документации:
+各版本的详细对比请参阅文档文件：
 
-| Функция | 1.11.1 | 1.11.2 |
+| 功能 | 1.11.1 | 1.11.2 |
 |---------|--------|--------|
-| Визуальный стиль | Базовый | [MAP] префикс с цветами |
-| Поддержка русского | Частичная | Полная ✓ |
+| 视觉样式 | 基础 | 带颜色的 [MAP] 前缀 |
+| 俄语支持 | 部分 | 完整 ✓ |
 | Multicolors | ✗ | ✓ |
 | Left4Dead | ✗ | ✓ |
-| Звуки по умолчанию | Включены | Отключены |
-| Динамический префикс | ✗ | ✓ |
+| 默认音效 | 启用 | 关闭 |
+| 动态前缀 | ✗ | ✓ |
 
-> 📋 Подробное сравнение: [DETAILED_COMPARISON.md](DETAILED_COMPARISON.md)
-
----
-
-## 📚 Документация
-
-- **[README_DOCUMENTATION.md](README_DOCUMENTATION.md)** — Навигация по всей документации
-- **[RELEASE_NOTES.md](RELEASE_NOTES.md)** — Новости версии 1.11.2
-- **[INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md)** — Подробная инструкция установки
-- **[CHANGELOG_1.11.2_RU.md](CHANGELOG_1.11.2_RU.md)** — Полный список изменений
-- **[DETAILED_COMPARISON.md](DETAILED_COMPARISON.md)** — Техническое сравнение версий
+> 📋 详细对比：[DETAILED_COMPARISON.md](DETAILED_COMPARISON.md)
 
 ---
 
-## 🛠️ Разработка
+## 📚 文档
 
-### Компиляция плагинов
+- **[README_DOCUMENTATION.md](README_DOCUMENTATION.md)** — 全部文档导航
+- **[RELEASE_NOTES.md](RELEASE_NOTES.md)** — 1.11.2 版本更新
+- **[INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md)** — 详细安装说明
+- **[CHANGELOG_1.11.2_RU.md](CHANGELOG_1.11.2_RU.md)** — 完整更新日志
+- **[DETAILED_COMPARISON.md](DETAILED_COMPARISON.md)** — 版本技术对比
 
-Используется встроенный компилятор SourceMod с поддержкой оптимизации:
+---
+
+## 🛠️ 开发
+
+### 编译插件
+
+使用 SourceMod 内置编译器并启用优化：
 
 ```bash
 spcomp.exe plugin.sp -i ./include -O2 -t4 -v2
 ```
 
-**Флаги:**
-- `-i` — путь к include файлам
-- `-O2` — уровень оптимизации
-- `-t4` — 4 потока компиляции
-- `-v2` — подробный вывод
+**参数：**
+- `-i` — include 文件路径
+- `-O2` — 优化级别
+- `-t4` — 4 线程编译
+- `-v2` — 详细输出
 
-### Структура исходников
+### 源码结构
 
-Все исходные файлы `.sp` находятся в папке `addons/sourcemod/scripting/`:
+所有 `.sp` 源文件位于 `addons/sourcemod/scripting/` 文件夹：
 
-- `mapchooser_extended.sp` — ядро системы выбора карт
-- `nominations_extended.sp` — система номинирования
-- `rockthevote_extended.sp` — система рок-голоса
-- `basetriggers.sp` — базовые системные триггеры
+- `mapchooser_extended.sp` — 地图选择系统核心
+- `nominations_extended.sp` — 提名系统
+- `rockthevote_extended.sp` — RTV 系统
+- `basetriggers.sp` — 基础系统触发器
 
-Include библиотеки:
-- `mapchooser_extended.inc` — основной API
-- `multicolors.inc` — работа с цветными сообщениями
-- `nativevotes.inc` — система голосования
-
----
-
-## 🤝 Благодарности
-
-Спасибо проекту **[sourcemod-mapchooser-extended](https://github.com/Sneaks-Community/sourcemod-mapchooser-extended)** от **Sneaks Community** за отличную базу для этого форка.
+Include 库：
+- `mapchooser_extended.inc` — 主 API
+- `multicolors.inc` — 彩色消息处理
+- `nativevotes.inc` — 投票系统
 
 ---
 
-## 📝 Лицензия
+## 🤝 致谢
 
-Этот проект распространяется под лицензией **MIT**. Подробнее см. файл LICENSE.
-
----
-
-## 🔗 Полезные ссылки
-
-- **Discord сервер Snapshots:** https://discord.gg/tWGJnE3DVU
-- **SourceMod документация:** https://www.sourcemod.net/
-- **Оригинальный проект:** https://github.com/Sneaks-Community/sourcemod-mapchooser-extended
+感谢 **Sneaks Community** 的 **[sourcemod-mapchooser-extended](https://github.com/Sneaks-Community/sourcemod-mapchooser-extended)** 项目为本分支提供了出色的基础。
 
 ---
 
-## 💬 Отладка и помощь
+## 📝 许可证
 
-Если у вас возникли проблемы:
-
-1. Проверьте [INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md) раздел "Решение проблем"
-2. Убедитесь что скопировали все файлы include
-3. Проверьте логи сервера: `addons/sourcemod/logs/`
-4. Используйте команду `sm plugins list` для проверки статуса плагинов
+本项目基于 **MIT** 许可证发布。详情请参阅 LICENSE 文件。
 
 ---
 
-**Версия:** 1.11.2  
-**Последнее обновление:** Март 2026  
-**Исходная версия:** Sneaks-Community/sourcemod-mapchooser-extended
+## 🔗 相关链接
+
+- **Snapshots Discord 服务器：** https://discord.gg/tWGJnE3DVU
+- **SourceMod 文档：** https://www.sourcemod.net/
+- **原项目：** https://github.com/Sneaks-Community/sourcemod-mapchooser-extended
+
+---
+
+## 💬 调试与帮助
+
+如果您遇到问题：
+
+1. 查看 [INSTALL_GUIDE_1.11.2.md](INSTALL_GUIDE_1.11.2.md) 中的"问题排查"部分
+2. 确认已复制所有 include 文件
+3. 检查服务器日志：`addons/sourcemod/logs/`
+4. 使用 `sm plugins list` 命令检查插件状态
+
+---
+
+**版本：** 1.11.2  
+**最后更新：** 2026 年 3 月  
+**原始版本：** Sneaks-Community/sourcemod-mapchooser-extended
